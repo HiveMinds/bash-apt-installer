@@ -34,8 +34,8 @@ git submodule add --force https://github.com/hiveminds/bash-package-installer de
 - Install the submodule with:
 
 ```sh
-chmod +x install_dependencies.sh
-./install_dependencies.sh
+chmod +x install-dependencies.sh
+./install-dependencies.sh
 ```
 
 ## Call this bash dependency from other repo
