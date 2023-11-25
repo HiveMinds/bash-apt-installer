@@ -48,8 +48,8 @@ After including this dependency you can use the functions in this module like:
 ```sh
 #!/bin/bash
 
-# Source the file containing the functions
-source "$(dirname "${BASH_SOURCE[0]}")/src/main.sh"
+# Load the installer dependency.
+source dependencies/package_installer/bash-package-installer/src/main.sh
 
 # Call the desired installation functions.
 ensure_apt_pkg "curl" 1
