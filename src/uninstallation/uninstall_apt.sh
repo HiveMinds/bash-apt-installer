@@ -5,7 +5,7 @@
 apt_remove() {
   local apt_package_name="$1"
 
-  yellow_msg "Removing ${apt_package_name} if it is installed."
+  INFO "Removing ${apt_package_name} if it is installed."
 
   sudo apt purge "$apt_package_name" -y >>/dev/null 2>&1
 
@@ -35,9 +35,9 @@ verify_apt_removed() {
 
   # Throw error if package still is installed.
   if [[ "$(apt_package_is_installed "$apt_package_name")" == "NOTFOUND" ]]; then
-    green_msg "Verified the apt package ${apt_package_name} is removed."
+    NOTICE "Verified the apt package ${apt_package_name} is removed."
   else
-    red_msg "Error, the apt package ${apt_package_name} is still installed."
+    ERROR "Error, the apt package ${apt_package_name} is still installed."
     exit 3 # TODO: update exit status.
   fi
 }

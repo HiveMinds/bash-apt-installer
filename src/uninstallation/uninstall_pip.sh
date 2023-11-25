@@ -3,7 +3,7 @@
 pip_remove() {
   local pip_package_name="$1"
 
-  yellow_msg "Removing ${pip_package_name} if it is installed."
+  INFO "Removing ${pip_package_name} if it is installed."
 
   pip remove "$pip_package_name" -y >>/dev/null 2>&1
 
@@ -40,10 +40,10 @@ verify_pip_removed() {
 
   # Throw error if pip package is not yet installed.
   if [ "$pip_pckg_exists" == "1" ]; then
-    green_msg "Verified pip package ${pip_package_name} is removed."
+    NOTICE "Verified pip package ${pip_package_name} is removed."
 
   else
-    red_msg "Error, the pip package ${pip_package_name} is still installed."
+    ERROR "Error, the pip package ${pip_package_name} is still installed."
     exit 3 # TODO: update exit status.
   fi
 }

@@ -5,7 +5,7 @@
 snap_remove() {
   local snap_package_name="$1"
 
-  yellow_msg "Removing ${snap_package_name} if it is installed."
+  INFO "Removing ${snap_package_name} if it is installed."
 
   sudo snap remove --purge "$snap_package_name" >>/dev/null 2>&1
 
@@ -26,9 +26,9 @@ verify_snap_removed() {
 
   # Throw error if package still is installed.
   if [[ "$(snap_package_is_installed "$snap_package_name")" == "NOTFOUND" ]]; then
-    green_msg "Verified the snap package ${snap_package_name} is removed."
+    NOTICE "Verified the snap package ${snap_package_name} is removed."
   else
-    red_msg "Error, the snap package ${snap_package_name} is still installed."
+    ERROR "Error, the snap package ${snap_package_name} is still installed."
     exit 3 # TODO: update exit status.
   fi
 }

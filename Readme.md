@@ -12,8 +12,8 @@ Call this dependency from another bash script to safely install and remove:
 - In your other repo, include a file named: `.gitmodules` that includes:
 
 ```sh
-[submodule "dependencies/package_installer"]
- path = dependencies/package_installer
+[submodule "dependencies/bash-package-installer"]
+ path = dependencies/bash-package-installer
  url = https://github.com/hiveminds/bash-package-installer
 ```
 
@@ -21,14 +21,14 @@ Call this dependency from another bash script to safely install and remove:
 
 ```sh
 # Remove the submodules if they were still in the repo.
-git rm --cached dependencies/package_installer/bash-package-installer
+git rm --cached dependencies/bash-package-installer
 
 # Remove and re-create the submodule directory.
-rm -r dependencies/package_installer/bash-package-installer
-mkdir -p dependencies/package_installer/bash-package-installer
+rm -r dependencies/bash-package-installer
+mkdir -p dependencies/bash-package-installer
 
 # (Re) add the BATS submodules to this repository.
-git submodule add --force https://github.com/hiveminds/bash-package-installer dependencies/package_installer/bash-package-installer
+git submodule add --force https://github.com/hiveminds/bash-package-installer dependencies/bash-package-installer
 
 # Update all submodules
 git submodule update --remote --recursive
@@ -49,7 +49,7 @@ After including this dependency you can use the functions in this module like:
 #!/bin/bash
 
 # Load the installer dependency.
-source dependencies/package_installer/bash-package-installer/src/main.sh
+source dependencies/bash-package-installer/src/main.sh
 
 # Call the desired installation functions.
 ensure_apt_pkg "curl" 1

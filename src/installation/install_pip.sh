@@ -17,17 +17,17 @@ ensure_pip_pkg() {
 
   # Install pip package if pip package is not yet installed.
   if [ "$pip_pckg_exists" == "1" ]; then
-    yellow_msg " ${pip_package_name} is not installed. Installing now."
+    INFO " ${pip_package_name} is not installed. Installing now."
     #pip -y install "${pip_package_name}"
     pip install "${pip_package_name}" >>/dev/null 2>&1
   else
-    green_msg " ${pip_package_name} is installed"
+    NOTICE " ${pip_package_name} is installed"
   fi
 
   verify_pip_installed "${pip_package_name}"
 
   if [ "$execute_pip_update" == "1" ]; then
-    green_msg "Performing pip update"
+    NOTICE "Performing pip update"
     #pipenv update
   fi
 }
@@ -45,9 +45,9 @@ verify_pip_installed() {
 
   # Throw error if pip package is not yet installed.
   if [ "$pip_pckg_exists" == "1" ]; then
-    red_msg "Error, the pip package ${pip_package_name} is not installed."
+    ERROR "Error, the pip package ${pip_package_name} is not installed."
     exit 3 # TODO: update exit status.
   else
-    green_msg "Verified pip package ${pip_package_name} is installed."
+    NOTICE "Verified pip package ${pip_package_name} is installed."
   fi
 }
