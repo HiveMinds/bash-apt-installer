@@ -3,6 +3,8 @@
 # Load the bash-log dependency.
 source dependencies/bash-log/src/main.sh
 
+source src/parsing_helper.sh
+
 # Get the path towards this src dir.
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 

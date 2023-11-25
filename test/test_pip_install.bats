@@ -21,7 +21,7 @@ load ../src/main.sh
 
   local log_output=$(pip_remove "twine")
   echo "log_output=$log_output"
-  local substring="[NOTICE][assert_pip_removed:27 ] Verified pip package twine is removed."
+  local substring="[NOTICE][assert_pip_removed:26 ] Verified pip package twine is removed."
   # Assert log output contains substring.
   [[ "$log_output" == *"$substring"* ]]
 }
