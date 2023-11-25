@@ -24,7 +24,7 @@ ensure_pip_pkg() {
     NOTICE " ${pip_package_name} is installed"
   fi
 
-  verify_pip_installed "${pip_package_name}"
+  assert_pip_installed "${pip_package_name}"
 
   if [ "$execute_pip_update" == "1" ]; then
     NOTICE "Performing pip update"
@@ -33,7 +33,7 @@ ensure_pip_pkg() {
 }
 
 # Verifies pip package is installed.
-verify_pip_installed() {
+assert_pip_installed() {
   local pip_package_name="$1"
 
   # Determine if pip package is installed or not.

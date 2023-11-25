@@ -12,7 +12,7 @@ mkdir -p test/libs
 
 # Remove and create a directory for the dependencies.
 rm -r dependencies
-mkdir -p dependencies/bash-log
+mkdir -p dependencies
 
 # (Re) add the BATS submodules to this repository.
 git submodule add --force https://github.com/sstephenson/bats test/libs/bats
