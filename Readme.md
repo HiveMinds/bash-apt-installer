@@ -29,6 +29,9 @@ mkdir -p dependencies/package_installer/bash-package-installer
 
 # (Re) add the BATS submodules to this repository.
 git submodule add --force https://github.com/hiveminds/bash-package-installer dependencies/package_installer/bash-package-installer
+
+# Update all submodules
+git submodule update --remote --recursive
 ```
 
 - Install the submodule with:
