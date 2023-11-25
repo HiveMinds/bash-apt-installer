@@ -9,13 +9,13 @@
 # Tests if there are spelling errors in the code.
 repos:
  - repo: https://github.com/codespell-project/codespell
-   rev: v2.2.2
+   rev: v2.2.6
    hooks:
     - id: codespell
 
 # Runs additional tests that are created by the pre-commit software itself.
  - repo: https://github.com/pre-commit/pre-commit-hooks
-   rev: v4.4.0
+   rev: v4.5.0
    hooks:
     # Check user did not add large files.
     - id: check-added-large-files
@@ -51,7 +51,7 @@ repos:
 
 # Enforces formatting style in Markdown (.md) files.
  - repo: https://github.com/executablebooks/mdformat
-   rev: 0.7.16
+   rev: 0.7.17
    hooks:
    - id: mdformat
      #args: ["-r ~MD013"]
@@ -61,13 +61,13 @@ repos:
      - mdformat-black
 
  - repo: https://github.com/igorshubovych/markdownlint-cli
-   rev: v0.32.2
+   rev: v0.37.0
    hooks:
      - id: markdownlint
        args: ["--fix"]
 
  - repo: https://github.com/shellcheck-py/shellcheck-py
-   rev: v0.9.0.2
+   rev: v0.9.0.6
    hooks:
      - id: shellcheck
        name: check shell scripts with shellcheck
@@ -76,7 +76,7 @@ repos:
        types: []
 
  - repo: https://github.com/syntaqx/git-hooks
-   rev: v0.0.17
+   rev: v0.0.18
    hooks:
     - id: shfmt
     # Note, the -w argument automatically applies the formatting improvements.

@@ -1,26 +1,68 @@
 # Unit tested Bash project template with Pre-commit
 
-[![Travis Build Status](https://img.shields.io/travis/a-t-0/shell_unit_testing_template.svg)](https://travis-ci.org/a-t-0/shell_unit_testing_template)
-[![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
+Call this dependency from another bash script to safely install and remove:
 
-You can use this as a starting point for your Bash/shell project with:
+- pip
+- apt
+- snap
+  packages
 
-- Unit testing
-- Code Coverage (100 %)
-- Pre-commit:
-  - shfmt (Auto-formatter)
-  - Shellcheck
-- Continuous Integration (GitLab CI)
+## Install this bash dependency in other repo
 
-That way, you start your project in a clean, tested environment.
-
-## Usage
-
-The main code can be ran with:
+- In your other repo, include a file named: `.gitmodules` that includes:
 
 ```sh
-src/main.sh
+[submodule "dependencies/package_installer"]
+ path = dependencies/package_installer
+ url = https://github.com/hiveminds/bash-package-installer
 ```
+
+- Create a file named `install_dependencies.sh` with content:
+
+```sh
+# Remove the submodules if they were still in the repo.
+git rm --cached dependencies/package_installer/bash-package-installer
+
+# Remove and re-create the submodule directory.
+rm -r dependencies/package_installer/bash-package-installer
+mkdir -p dependencies/package_installer/bash-package-installer
+
+# (Re) add the BATS submodules to this repository.
+git submodule add --force https://github.com/hiveminds/bash-package-installer dependencies/package_installer/bash-package-installer
+```
+
+- Install the submodule with:
+
+```sh
+chmod +x install_dependencies.sh
+./install_dependencies.sh
+```
+
+## Call this bash dependency from other repo
+
+After including this dependency you can use the functions in this module like:
+
+```sh
+#!/bin/bash
+
+# Source the file containing the functions
+source "$(dirname "${BASH_SOURCE[0]}")/src/main.sh"
+
+# Call the desired installation functions.
+ensure_apt_pkg "curl" 1
+ensure_snap_pkg "brave"
+ensure_pip_pkg "twine" 1
+
+
+# Call the desired installation functions.
+apt_remove "curl" 0
+snap_remove "brave"
+pip_remove "twine" 1
+```
+
+The `0` and `1` after the package name indicate whether it will update the
+package manager afterwards (`0` = no update, `1` = package manager update after
+installation/removal)
 
 ## Testing
 
@@ -39,6 +81,7 @@ Install:
 
 ```sh
 sudo gem install bats
+sudo apt install bats -y
 sudo gem install bashcov
 sudo apt install shfmt -y
 pre-commit install
