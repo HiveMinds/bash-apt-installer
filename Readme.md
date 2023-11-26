@@ -1,4 +1,4 @@
-# Unit tested Bash project template with Pre-commit
+# Bash pip, apt and snap installer
 
 Call this dependency from another bash script to safely install and remove:
 
@@ -23,9 +23,9 @@ Call this dependency from another bash script to safely install and remove:
 # Remove the submodules if they were still in the repo.
 git rm --cached dependencies/bash-package-installer
 
-# Remove and re-create the submodule directory.
-rm -r dependencies/bash-package-installer
-mkdir -p dependencies/bash-package-installer
+# Remove and create a directory for the dependencies.
+rm -r dependencies
+mkdir -p dependencies
 
 # (Re) add the BATS submodules to this repository.
 git submodule add --force https://github.com/hiveminds/bash-package-installer dependencies/bash-package-installer
