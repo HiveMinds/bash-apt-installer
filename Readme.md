@@ -76,8 +76,8 @@ Put your unit test files (with extension .bats) in folder: `/test/`
 (Re)-install the required submodules with:
 
 ```sh
-chmod +x install-bats-libs.sh
-./install-bats-libs.sh
+chmod +x install-dependencies.sh
+./install-dependencies.sh
 ```
 
 Install:
