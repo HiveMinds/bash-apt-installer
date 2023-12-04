@@ -75,11 +75,25 @@ setup_virtualenv() {
 
 function activate_virtualenv() {
   local venv_name="$1"
-
-  # Activate the virtual environment
-  # shellcheck disable=SC1091
-  source "$venv_name/bin/activate" || {
-    echo "Failed to activate virtual environment."
+  read -rp "PWD=$PWD"
+  read -rp "dir=$PWD/../../$venv_name/bin/activate"
+  if [ -f "$venv_name/bin/activate" ]; then
+    # Activate the virtual environment
+    # shellcheck disable=SC1091
+    source "$venv_name/bin/activate" || {
+      echo "Failed to activate virtual environment with PWD=$PWD"
+      exit 1
+    }
+  elif [ -f "../../$venv_name/bin/activate" ]; then
+    # Activate the virtual environment
+    # shellcheck disable=SC1090
+    source "../../$venv_name/bin/activate" || {
+      ERROR "Failed to activate virtual environment from dependency with PWD=$PWD."
+      exit 1
+    }
+  else
+    ERROR "Virtual environment does not exist."
     exit 1
-  }
+  fi
+
 }
