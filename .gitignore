@@ -1,2 +1,4 @@
 coverage/*
 dependencies/*
+automated-pip-venv/*
+test/libs/*

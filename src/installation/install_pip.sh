@@ -8,6 +8,10 @@ ensure_pip_pkg() {
   local pip_package_name="$1"
   local execute_pip_update="$2"
 
+  # shellcheck disable=SC2153
+  setup_virtualenv "$VENV_NAME"
+  activate_virtualenv "$VENV_NAME"
+
   # Determine if pip package is installed or not.
   local pip_pckg_exists
   pip_pckg_exists=$(
@@ -18,14 +22,15 @@ ensure_pip_pkg() {
   # Install pip package if pip package is not yet installed.
   if [ "$pip_pckg_exists" == "1" ]; then
     INFO " ${pip_package_name} is not installed. Installing now."
-    ensure_apt_pkg "pipx"
+    #ensure_apt_pkg "pipx"
     # pipx install "${pip_package_name}" >>/dev/null 2>&1
-    pipx install "${pip_package_name}"
+    #pipx install "${pip_package_name}"
+    pip install "${pip_package_name}"
   else
     NOTICE " ${pip_package_name} is installed"
   fi
 
-  assert_pip_installed "${pip_package_name}"
+  assert_pip_installed "${pip_package_name}" "$VENV_NAME"
 
   if [ "$execute_pip_update" == "1" ]; then
     NOTICE "Performing pip update"
@@ -36,6 +41,10 @@ ensure_pip_pkg() {
 # Verifies pip package is installed.
 assert_pip_installed() {
   local pip_package_name="$1"
+  local venv_name="$2"
+
+  setup_virtualenv "$venv_name"
+  activate_virtualenv "$venv_name"
 
   # Determine if pip package is installed or not.
   local pip_pckg_exists
@@ -51,4 +60,28 @@ assert_pip_installed() {
   else
     NOTICE "Verified pip package ${pip_package_name} is installed."
   fi
+}
+
+setup_virtualenv() {
+  local venv_name="$1"
+
+  # Check if the virtual environment already exists
+  if [ ! -d "$venv_name" ]; then
+    echo "Creating virtual environment..."
+    python3 -m venv "$venv_name" || {
+      echo "Failed to create virtual environment."
+      exit 1
+    }
+  fi
+}
+
+function activate_virtualenv() {
+  local venv_name="$1"
+
+  # Activate the virtual environment
+  # shellcheck disable=SC1091
+  source "$venv_name/bin/activate" || {
+    echo "Failed to activate virtual environment."
+    exit 1
+  }
 }

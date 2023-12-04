@@ -2,6 +2,10 @@
 
 source "dependencies/bash-log/src/main.sh"
 
+# TODO: move into globals.
+# shellcheck disable=SC2034
+VENV_NAME="automated-pip-venv"
+
 function load_functions() {
   local script_dir
   script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
