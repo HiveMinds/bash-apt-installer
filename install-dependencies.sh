@@ -22,3 +22,7 @@ git submodule add --force https://github.com/HiveMinds/bash-log dependencies/bas
 
 # Get the latest commits of those submodules.
 git submodule update --remote --recursive
+
+# Remove the submodules from the index.
+git rm -r -f --cached test/libs/bats
+git rm -r -f --cached dependencies
