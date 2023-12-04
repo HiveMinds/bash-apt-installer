@@ -12,6 +12,9 @@ ensure_apt_pkg() {
   if [[ "$(apt_package_is_installed "$apt_package_name")" != "FOUND" ]]; then
     INFO " ${apt_package_name} is not installed. Installing now."
     sudo apt --assume-yes install "${apt_package_name}" >>/dev/null 2>&1
+    if [[ "$apt_package_name" == "pipx" ]]; then
+      pipx ensurepath
+    fi
   else
     NOTICE " ${apt_package_name} is installed"
   fi

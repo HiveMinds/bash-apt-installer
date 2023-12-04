@@ -14,12 +14,13 @@ ensure_pip_pkg() {
     pip list | grep -F "$pip_package_name"
     echo $?
   )
-
+  NOTICE "pip_pckg_exists=$pip_pckg_exists"
   # Install pip package if pip package is not yet installed.
   if [ "$pip_pckg_exists" == "1" ]; then
     INFO " ${pip_package_name} is not installed. Installing now."
-    #pip -y install "${pip_package_name}"
-    pip install "${pip_package_name}" >>/dev/null 2>&1
+    ensure_apt_pkg "pipx"
+    # pipx install "${pip_package_name}" >>/dev/null 2>&1
+    pipx install "${pip_package_name}"
   else
     NOTICE " ${pip_package_name} is installed"
   fi
