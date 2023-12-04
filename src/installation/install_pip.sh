@@ -82,13 +82,6 @@ function activate_virtualenv() {
       echo "Failed to activate virtual environment with PWD=$PWD"
       exit 1
     }
-  elif [ -f "/$venv_name/bin/python3.11" ]; then
-    # Activate the virtual environment
-    # shellcheck disable=SC1091
-    source "$venv_name/bin/python3.11" || {
-      ERROR "Failed to activate python3.11 virtual environment with PWD=$PWD."
-      exit 1
-    }
   else
     ERROR "Virtual environment does not exist."
     exit 1
