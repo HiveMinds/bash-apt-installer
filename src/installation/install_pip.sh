@@ -22,10 +22,8 @@ ensure_pip_pkg() {
   # Install pip package if pip package is not yet installed.
   if [ "$pip_pckg_exists" == "1" ]; then
     INFO " ${pip_package_name} is not installed. Installing now."
-    #ensure_apt_pkg "pipx"
-    # pipx install "${pip_package_name}" >>/dev/null 2>&1
-    #pipx install "${pip_package_name}"
-    pip install "${pip_package_name}"
+    pip install "${pip_package_name}" >>/dev/null 2>&1
+    # TODO: if the state $? is not 0, then print output.
   else
     NOTICE " ${pip_package_name} is installed"
   fi
