@@ -24,8 +24,8 @@ Call this dependency from another bash script to safely install and remove:
 git rm --cached dependencies/bash-package-installer
 
 # Remove and create a directory for the dependencies.
-rm -r dependencies
-mkdir -p dependencies
+rm -r "$SCRIPT_PATH/dependencies"
+mkdir -p "$SCRIPT_PATH/dependencies"
 
 # (Re) add the BATS submodules to this repository.
 git submodule add --force https://github.com/hiveminds/bash-package-installer dependencies/bash-package-installer
