@@ -49,7 +49,7 @@ After including this dependency you can use the functions in this module like:
 #!/bin/bash
 
 # Load the installer dependency.
-source dependencies/bash-package-installer/src/main.sh
+source "$REPO_ROOT_PATH/"/bash-package-installer/src/main.sh
 
 # Call the desired installation functions.
 ensure_apt_pkg "curl" 1
