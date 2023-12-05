@@ -5,11 +5,11 @@ PACKAGE_INSTALLER_PARENT_DEPS=("bash-create-onion-domains" "bash-ssh-over-tor" "
 # This module has dependencies:
 PACKAGE_INSTALLER_REQUIRED_DEPS=("bash-log")
 
-PACKAGE_INSTALLER_SRC_PATH=$(dirname "$(readlink -f "$0")")
+PACKAGE_INSTALLER_SRC_PATH=$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")
 PACKAGE_INSTALLER_PATH=$(readlink -f "$PACKAGE_INSTALLER_SRC_PATH/../")
 
 # Loads the bash log dependency, and the dependency loader.
-function load_bash_log_dependency() {
+function load_dependency_manager() {
   if [ -d "$PACKAGE_INSTALLER_PATH/dependencies/bash-log" ]; then
     # shellcheck disable=SC1091
     source "$PACKAGE_INSTALLER_PATH/dependencies/bash-log/src/main.sh"
@@ -21,7 +21,7 @@ function load_bash_log_dependency() {
     exit 1
   fi
 }
-load_bash_log_dependency
+load_dependency_manager
 
 # Load required dependencies.
 for required_dependency in "${PACKAGE_INSTALLER_REQUIRED_DEPS[@]}"; do
