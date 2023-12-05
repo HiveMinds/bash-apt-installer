@@ -1,5 +1,5 @@
 #!/bin/bash
-
+export bash_package_installer_is_loaded=true
 # This module is a dependency for:
 PACKAGE_INSTALLER_PARENT_DEPS=("bash-create-onion-domains" "bash-ssh-over-tor" "bash-start-tor-at-boot")
 # This module has dependencies:
