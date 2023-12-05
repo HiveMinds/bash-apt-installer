@@ -12,7 +12,7 @@ PACKAGE_INSTALLER_PATH=$(readlink -f "$PACKAGE_INSTALLER_SRC_PATH/../")
 function load_dependency_manager() {
   if [ -d "$PACKAGE_INSTALLER_PATH/dependencies/bash-log" ]; then
     # shellcheck disable=SC1091
-    source "$PACKAGE_INSTALLER_PATH/dependencies/bash-log/src/main.sh"
+    source "$PACKAGE_INSTALLER_PATH/dependencies/bash-log/src/dependency_manager.sh"
   elif [ -d "$PACKAGE_INSTALLER_PATH/../bash-log" ]; then
     # shellcheck disable=SC1091
     source "$PACKAGE_INSTALLER_PATH/../bash-log/src/main.sh"
