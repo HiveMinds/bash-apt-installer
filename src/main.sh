@@ -41,7 +41,6 @@ B_LOG --file log/multiple-outputs.txt --file-prefix-enable --file-suffix-enable
 # shellcheck disable=SC2034
 VENV_NAME="automated-pip-venv"
 
-NOTICE "Loading from:$PACKAGE_INSTALLER_SRC_PATH"
 function load_functions() {
   # shellcheck disable=SC1091
   source "$PACKAGE_INSTALLER_SRC_PATH/parsing_helper.sh"
