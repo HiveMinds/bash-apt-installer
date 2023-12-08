@@ -65,9 +65,9 @@ setup_virtualenv() {
 
   # Check if the virtual environment already exists
   if [ ! -d "$venv_name" ]; then
-    echo "Creating virtual environment..."
+    NOTICE "Creating virtual environment..."
     python3 -m venv "$venv_name" || {
-      echo "Failed to create virtual environment."
+      ERROR "Failed to create virtual environment."
       exit 1
     }
   fi
@@ -79,7 +79,7 @@ function activate_virtualenv() {
     # Activate the virtual environment
     # shellcheck disable=SC1091
     source "$venv_name/bin/activate" || {
-      echo "Failed to activate virtual environment with PWD=$PWD"
+      ERROR "Failed to activate virtual environment with PWD=$PWD"
       exit 1
     }
   else

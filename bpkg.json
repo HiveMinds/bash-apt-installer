@@ -1,0 +1,16 @@
+{
+  "commands": {
+    "lint": "command shellcheck **/*.sh",
+    "list-sources": "echo ${BPKG_PACKAGE_SOURCES[@]} | sed 's/ /\n/g'"
+  },
+  "commands-description": {
+    "lint": "Execute shellcheck against all .sh files in project",
+    "list-sources": "Output package source files"
+  },
+  "description": "Robust and logged installer of apt, snap and pip packages.",
+  "global": true,
+  "install": "bash src/main.sh",
+  "name": "bpkg",
+  "repo": "HiveMinds/bash-package-installer",
+  "version": "0.0.1"
+}
